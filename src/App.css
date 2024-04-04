@@ -2,7 +2,7 @@
 
 .logo {
   height: 100px;
-  width: 100px;
+  width: 150px;
 }
 .head-button {
   color: white;
@@ -11,7 +11,9 @@
   height: 100px;
   width: 200px;
   margin: 10px;
+  border-radius: 18px;
 }
+
 .header-container {
   display: flex;
   justify-content: center;
@@ -25,6 +27,7 @@
 }
 .head-button:hover {
   cursor: pointer;
+  border: 2px solid white;
 }
 
 /* -------------MAIN PAGE --------------*/
@@ -32,6 +35,13 @@ body {
   background-color: black;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.button {
+  box-shadow: none;
 }
 .background-image {
   top: 0;
@@ -170,4 +180,34 @@ h1 {
 }
 .pages:hover {
   border: 2px solid white;
+}
+.name-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*---------------------------------------------------*/
+
+.comic-container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+}
+.comic-container img {
+  height: 600px;
+  width: 600px;
+}
+.comic-details {
+  width: 300px;
+  margin: 100px;
+}
+.fav-comic {
+  margin-top: 50px;
+  width: 200px;
+  height: 100px;
+  border-radius: 18px;
+  font-size: 30px;
 }

@@ -12,8 +12,10 @@ const Header = () => {
         <img className="logo" src={logo} alt="" />
       </Link>
       <div>
-        <button className="head-button">COMICS</button>
-        <button className="head-button">FAVORIS</button>
+        <Link to="/comics">
+          <button className="head-button">COMICS</button>{" "}
+        </Link>
+        <button className="head-button">MES FAVORIS</button>
       </div>
     </div>
   );

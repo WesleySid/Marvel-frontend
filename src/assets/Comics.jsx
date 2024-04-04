@@ -2,28 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Characters = () => {
-  const [characters, setCharacters] = useState([]);
+const Comics = () => {
+  const [comics, setComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [hoveredCharacter, setHoveredCharacter] = useState(null);
+  const [hoveredComic, setHoveredComic] = useState(null);
 
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const fetchComics = async () => {
       try {
         setIsLoading(true);
         const skip = (currentPage - 1) * 100; // 100 est la taille de la page
         const response = await axios.get(
-          `http://localhost:3000/characters?skip=${skip}`
+          `http://localhost:3000/comics?skip=${skip}`
         );
-        setCharacters(response.data.results);
+        setComics(response.data.results);
         setIsLoading(false);
       } catch (error) {
         console.error(error.message);
       }
     };
 
-    fetchCharacters();
+    fetchComics();
   }, [currentPage]);
 
   const handlePrevPage = () => {
@@ -34,12 +34,12 @@ const Characters = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const handleMouseEnter = (characterId) => {
-    setHoveredCharacter(characterId);
+  const handleMouseEnter = (comicId) => {
+    setHoveredComic(comicId);
   };
 
   const handleMouseLeave = () => {
-    setHoveredCharacter(null);
+    setHoveredComic(null);
   };
 
   return (
@@ -49,20 +49,20 @@ const Characters = () => {
       ) : (
         <>
           <div className="chars-container">
-            {characters.map((character) => (
-              <Link to={`/character/${character._id}`} key={character._id}>
+            {comics.map((comic) => (
+              <Link to={`/comic/${comic._id}`} key={comic._id}>
                 <div
                   className="char-card"
-                  key={character._id}
-                  onMouseEnter={() => handleMouseEnter(character._id)}
+                  key={comic._id}
+                  onMouseEnter={() => handleMouseEnter(comic._id)}
                   onMouseLeave={handleMouseLeave}
                 >
                   <img
-                    src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                    alt={character.name}
+                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                    alt={comic.title}
                   />
-                  <p className="name-title">{character.name}</p>
-                  {hoveredCharacter === character._id && (
+                  <p className="name-title">{comic.title}</p>
+                  {hoveredComic === comic._id && (
                     <p>Cliquez pour en savoir plus</p>
                   )}
                 </div>
@@ -87,4 +87,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default Comics;

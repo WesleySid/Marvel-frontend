@@ -6,6 +6,8 @@ import Home from "./assets/Home";
 import Header from "./assets/Header";
 import Characters from "./assets/Characters";
 import Character from "./assets/Character";
+import Comics from "./assets/Comics";
+import Comic from "./assets/Comic";
 import "./App.css";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             element={<Character></Character>}
           ></Route>
           <Route path="/characters" element={<Characters></Characters>}></Route>
+          <Route path="/comics" element={<Comics></Comics>}></Route>
+          <Route path="/comic/:id" element={<Comic></Comic>}></Route>
         </Routes>
       </Router>
     </>
