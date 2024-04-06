@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "./img/logo.jpg";
+import SidebarMenu from "../SideBar";
 
 const Header = () => {
   return (
@@ -16,6 +17,7 @@ const Header = () => {
           <button className="head-button">COMICS</button>{" "}
         </Link>
         <button className="head-button">MES FAVORIS</button>
+        <SidebarMenu className="sidebar"></SidebarMenu>
       </div>
     </div>
   );

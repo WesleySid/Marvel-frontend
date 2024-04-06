@@ -1,8 +1,23 @@
 /* -------------Header -----------------*/
+/* Large devices (desktops, 992px and up) */
 
 .logo {
   height: 100px;
   width: 150px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin-top: 200px;
+  margin-left: 200px;
+  border-radius: 18px;
+  height: 100px;
+  width: 400px;
+  font-size: 22px;
+  font-weight: bold;
+  border: solid, 1px, white;
 }
 .head-button {
   color: white;
@@ -29,10 +44,34 @@
   cursor: pointer;
   border: 2px solid white;
 }
+.sidebar {
+  display: none;
+}
+.menu {
+  margin: 20px;
+}
+.menu-button {
+  font-size: 28px;
+  width: 100px;
+  margin: 20px;
+  color: white;
+  background-color: black;
+  border-radius: 18px;
+}
+
+li {
+  color: white;
+  font-size: 20px;
+  margin: 10px;
+}
+li:hover {
+  text-decoration: underline;
+  color: white;
+}
 
 /* -------------MAIN PAGE --------------*/
 body {
-  background-color: black;
+  background-color: #1a1b1d;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
@@ -112,9 +151,11 @@ h1 {
   margin: 50px;
 }
 .char-container {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 200px;
 }
 
 .char-container img {
@@ -132,12 +173,39 @@ h1 {
 }
 
 .char-comics {
-  width: 200px;
+  width: 600px;
+  display: flex;
+  height: 350px;
+  overflow: auto;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 18px;
+}
+h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 .favorites {
   margin-left: 300px;
   margin-right: 300px;
   height: 200px;
+}
+.comic-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+}
+.comic-list img {
+  height: 250px;
+  width: 170px;
+  margin: 10px;
+}
+.comic-list:hover {
+  border: 2px solid white;
+  border-radius: 18px;
+  cursor: pointer;
 }
 
 /*------------ALL CHARACTERS PAGE --------------*/
@@ -205,9 +273,43 @@ h1 {
   margin: 100px;
 }
 .fav-comic {
-  margin-top: 50px;
+  margin: 50px;
   width: 200px;
   height: 100px;
   border-radius: 18px;
   font-size: 30px;
+}
+.fav-comic:hover {
+  cursor: pointer;
+}
+
+/*---------------------RESPONSIVE---------------------*/
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 768px) {
+  .head-button {
+    display: none;
+  }
+
+  .sidebar {
+    display: contents;
+  }
+  .chars-container {
+    display: block;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 992px) {
+}
+
+/* Rules */
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+  /* Rules */
+}
+
+/* Extra extra large devices (large desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* Rules */
 }

@@ -6,6 +6,7 @@ const Character = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [char, setChar] = useState(null);
+  const [comic, setComic] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,22 @@ const Character = () => {
         );
         console.log(response.data);
         setChar(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(id);
+        const response = await axios.get(`http://localhost:3000/comics/${id}`);
+        console.log(response.data);
+        setComic(response.data);
         setIsLoading(false);
       } catch (error) {
         console.error(error.message);
@@ -49,12 +66,19 @@ const Character = () => {
           <div className="char-desc">
             <p className="p-desc">{char.description}</p>
           </div>
-          <button className="favorites">Ajouter à mes favoris</button>
+          <button className="fav-comic">Ajouter à mes favoris</button>
+
           <div className="char-comics">
-            <h1>Comics</h1>
-            {char.comics.map((comic, index) => (
-              <p key={index}>{comic}</p>
-            ))}
+            {comic.comics &&
+              comic.comics.map((comic, index) => (
+                <div className="comic-list" key={comic._id}>
+                  <img
+                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                    alt={comic.title}
+                  />
+                  <p>{comic.title}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>
