@@ -68,7 +68,15 @@ li:hover {
   text-decoration: underline;
   color: white;
 }
+/*_---------------FOOTER-----------------*/
 
+.foot-container {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
 /* -------------MAIN PAGE --------------*/
 body {
   background-color: #1a1b1d;
@@ -90,14 +98,32 @@ a {
   background-size: cover; /* Assure que l'image couvre toute la section */
   background-repeat: no-repeat; /* Évite que l'image se répète */
 }
+.main-page {
+  display: flex;
+
+  margin: 50px;
+}
+.home-div {
+  margin: 20px;
+  gap: 20px;
+}
+.home-div:hover {
+  cursor: pointer;
+}
+.home-div img {
+  height: 750px;
+  width: 800px;
+  margin-top: 20px;
+  overflow: hidden;
+  padding: 30px;
+}
 .accueil {
   width: 100vw;
-  height: 600vh;
+  height: 1000vh;
   background-size: cover;
   background-repeat: repeat;
   margin-top: 100px;
   background-attachment: fixed;
-  margin-top: 150px;
 }
 section img {
   height: 900px;

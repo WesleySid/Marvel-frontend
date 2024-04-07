@@ -9,6 +9,7 @@ import Character from "./assets/Character";
 import Comics from "./assets/Comics";
 import Comic from "./assets/Comic";
 import "./App.css";
+import Footer from "./assets/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/comics" element={<Comics></Comics>}></Route>
           <Route path="/comic/:id" element={<Comic></Comic>}></Route>
         </Routes>
+        <Footer></Footer>
       </Router>
     </>
   );

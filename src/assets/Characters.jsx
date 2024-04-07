@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import BG from "./img/spiderman7.jpg";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
@@ -13,7 +14,7 @@ const Characters = () => {
     const fetchCharacters = async () => {
       try {
         setIsLoading(true);
-        const skip = (currentPage - 1) * 100; // 100 cest la taille de la page
+        const skip = (currentPage - 1) * 100; // 100 c'est la taille de la page
         const response = await axios.get(
           `http://localhost:3000/characters?skip=${skip}`
         );
@@ -54,55 +55,57 @@ const Characters = () => {
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <p>Les héros sont en chemin ...</p>
-      ) : (
-        <>
-          <main>
-            <input
-              type="text"
-              placeholder="Rechercher par nom ..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <div className="chars-container">
-              {filteredCharacters.map((character) => (
-                <Link to={`/character/${character._id}`} key={character._id}>
-                  <div
-                    className="char-card"
-                    key={character._id}
-                    onMouseEnter={() => handleMouseEnter(character._id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <img
-                      src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                      alt={character.name}
-                    />
-                    <p className="name-title">{character.name}</p>
-                    {hoveredCharacter === character._id && (
-                      <p>Cliquez pour en savoir plus</p>
-                    )}
-                  </div>
-                </Link>
-              ))}
+    <section className="accueil" style={{ backgroundImage: `url(${BG})` }}>
+      <div>
+        {isLoading ? (
+          <p>Les héros sont en chemin ...</p>
+        ) : (
+          <>
+            <main>
+              <input
+                type="text"
+                placeholder="Rechercher par nom ..."
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+              <div className="chars-container">
+                {filteredCharacters.map((character) => (
+                  <Link to={`/character/${character._id}`} key={character._id}>
+                    <div
+                      className="char-card"
+                      key={character._id}
+                      onMouseEnter={() => handleMouseEnter(character._id)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <img
+                        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                        alt={character.name}
+                      />
+                      <p className="name-title">{character.name}</p>
+                      {hoveredCharacter === character._id && (
+                        <p>Cliquez pour en savoir plus</p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </main>
+            <div className="page-button">
+              <button
+                className="pages"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                Page précédente
+              </button>
+              <button className="pages" onClick={handleNextPage}>
+                Page suivante
+              </button>
             </div>
-          </main>
-          <div className="page-button">
-            <button
-              className="pages"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              Page précédente
-            </button>
-            <button className="pages" onClick={handleNextPage}>
-              Page suivante
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import BG from "./img/marvel.jpg";
 
 const Comics = () => {
   const [comics, setComics] = useState([]);
@@ -52,55 +53,57 @@ const Comics = () => {
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <p>Les comics sont en chemin ...</p>
-      ) : (
-        <>
-          <main>
-            <input
-              type="text"
-              placeholder="Rechercher par titre..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <div className="chars-container">
-              {filteredComics.map((comic) => (
-                <Link to={`/comic/${comic._id}`} key={comic._id}>
-                  <div
-                    className="char-card"
-                    key={comic._id}
-                    onMouseEnter={() => handleMouseEnter(comic._id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <img
-                      src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                      alt={comic.title}
-                    />
-                    <p className="name-title">{comic.title}</p>
-                    {hoveredComic === comic._id && (
-                      <p>Cliquez pour en savoir plus</p>
-                    )}
-                  </div>
-                </Link>
-              ))}
+    <section className="accueil" style={{ backgroundImage: `url(${BG})` }}>
+      <div>
+        {isLoading ? (
+          <p>Les comics sont en chemin ...</p>
+        ) : (
+          <>
+            <main>
+              <input
+                type="text"
+                placeholder="Rechercher par titre..."
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+              <div className="chars-container">
+                {filteredComics.map((comic) => (
+                  <Link to={`/comic/${comic._id}`} key={comic._id}>
+                    <div
+                      className="char-card"
+                      key={comic._id}
+                      onMouseEnter={() => handleMouseEnter(comic._id)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <img
+                        src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                        alt={comic.title}
+                      />
+                      <p className="name-title">{comic.title}</p>
+                      {hoveredComic === comic._id && (
+                        <p>Cliquez pour en savoir plus</p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </main>
+            <div className="page-button">
+              <button
+                className="pages"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                Page précédente
+              </button>
+              <button className="pages" onClick={handleNextPage}>
+                Page suivante
+              </button>
             </div>
-          </main>
-          <div className="page-button">
-            <button
-              className="pages"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              Page précédente
-            </button>
-            <button className="pages" onClick={handleNextPage}>
-              Page suivante
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </section>
   );
 };
 
